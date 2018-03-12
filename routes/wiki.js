@@ -14,6 +14,7 @@ router.get('/', (req, res) =>{
 router.post('/', (req, res, next) => {
 
     const page = Page.build({
+        url
         title: req.body.title,
         content: req.body.content,
         status: req.body.status,
