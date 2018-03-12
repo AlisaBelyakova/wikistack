@@ -8,6 +8,7 @@ const chalk = require('chalk');
 const pg = require('pg');
 const sequelize = require('sequelize');
 const routes = require('./routes/routes.js');
+
 const db = require('./db.js');
 
 
