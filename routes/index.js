@@ -1,18 +1,19 @@
 const router = require('express').Router();
-const wikiRouter = require('./wiki');
-const userRouter = require('./user');
+const wikiRouter = require('./wiki.js');
+const userRouter = require('./user.js');
+const bodyParser = require('body-parser');
 
-router.use('/wikistack', wikiRouter);
-router.use('/user', userRouter);
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({extended: true})); 
+
+router.get('/', (req, res)=>{
+    res.redirect('/wiki');
+});
+// router.use('/', wikiRouter)
+router.use('/wiki', wikiRouter);
+// router.use('/user', userRouter);
 
 
-router.get('/wikistack', (req, res)=>{
-    res.render('index');
-})
 
-router.post('/wikistack', (req, res, next) => {
-    let bodyReq = req.body;
-    res.send()
-})
 
 module.exports = router;

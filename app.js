@@ -31,11 +31,3 @@ models.db.sync({force: true})
 
     })
     .catch(console.error.bind(console));
-// models.User.sync().then( () => { //syncing first table
-//     console.log('User table created!');
-//     return models.Page.sync(); //syncing second table
-// })
-// .then(() => {
-//     console.log("Page table created!");
-// })
-

@@ -32,8 +32,11 @@ const Page = db.define('page', {
     },
 }, { //beginning of third argument
     getterMethods: {
+        urlGetter () {
+            // we want to take the title from user and return one that has no spaces
+        },
         get () {
-            return 'wikistack/' + this.urlTitle;
+            return '/wiki/' + this.urlTitle;
         }
     },
     // setterMethods: {} if we were putting in settermethods, this is where they would go
