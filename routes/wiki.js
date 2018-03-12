@@ -11,10 +11,19 @@ router.get('/', (req, res) =>{
     res.render('index');
 })
 
+function urlGetter (title) {
+    // we want to take the title from user and return one that has no spaces
+    return title.replace(/\s+/g, '_').replace();
+}
+
+
 router.post('/', (req, res, next) => {
+    Page.hook('beforeValidate', (page)=>{
+        page.urlTitle = urlGetter(req.body.title)
+    })
 
     const page = Page.build({
-        url
+        // urlTitle: Page.urlGetter(req.body.title),
         title: req.body.title,
         content: req.body.content,
         status: req.body.status,

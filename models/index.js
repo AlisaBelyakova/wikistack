@@ -6,17 +6,17 @@ const db = new Sequelize('postgres://localhost:5432/wikistack', {
 const Page = db.define('page', {
     title: {
         type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-            isAlphanumeric: true
-        }
+        allowNull: false
+        // , validate: {
+        //     isAlphanumeric: true
+        // }
     },
     urlTitle: {
         type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-            isUrl: true
-        }
+        allowNull: false
+        //, validate: {
+        //     isUrl: true
+        // }
     },
     content: {
         type: Sequelize.TEXT,
@@ -31,19 +31,28 @@ const Page = db.define('page', {
         defaultValue: Sequelize.NOW
     },
 }, { //beginning of third argument
-    getterMethods: {
-        urlGetter () {
-            // we want to take the title from user and return one that has no spaces
-        },
+    getterMethods: { 
         get () {
             return '/wiki/' + this.urlTitle;
         }
-    },
+    }, 
+    // hooks: {
+    //     // beforeValidate: urlGetter (title) {
+    //     // }
+    // }
     // setterMethods: {} if we were putting in settermethods, this is where they would go
 
     } //end of third argument
 
 )
+
+
+
+
+// Page.hook('beforeValidate', (page)=>{
+//     page.urlTitle = urlGetter()
+// })
+
 
 const User = db.define('user', {
     name: {
